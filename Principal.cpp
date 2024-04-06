@@ -3,8 +3,12 @@
 #include<cstdlib> //para o exit do programa e a função rand
 #include<time.h> // para poder usar o time em rand
 #include<cstring>
+#include<fstream>
+
+
 using namespace std;
   
+void abertura 
 
 int menu(){
 int opcao;
@@ -208,7 +212,7 @@ int main(){
 
     opçaomenu = menu();
 
-    if(resultado_dificuldade(dificuldade) == 1) {
+if(resultado_dificuldade(dificuldade) == 1) {
         if(opçaomenu == 1) {
             j=1;
             if(j==1 || j==3 ){ //quando o jogador joga primeiro
@@ -275,6 +279,7 @@ int main(){
         }
          //fim do jogo com eu primeiro
 
+        }
 
         if(opçaomenu == 2){                 /*escolhe contra quem joga*/
 
@@ -282,7 +287,7 @@ int main(){
         // a função vai dar a informação por referencia de quem joga
         quem_joga_primeiro(j);
 
-        if(j==1 || j==3 ){ //quando o jogador joga primeiro
+        if(j==1 ){ //quando o jogador joga primeiro
             cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
             printmatriz(matriz_de_jogo,i=0);
@@ -403,27 +408,23 @@ int main(){
             cout << "Resultado: Empate" << endl;
         }
         }
-    
-        
 
-
-
+        if(opçaomenu == 3){         /*escolher a dificuldade*/
+        menu();
 
         }
-        if(opçaomenu == 3){         /*apaga histórico de jogadas*/
 
-
-        }
         if(opçaomenu == 4){         /*mostra top 10*/
 
 
         }
+
         if(opçaomenu == 5){         /*fecha jogo*/
 
 
         }
     }
-    if(resultado_dificuldade(dificuldade) == 2){/*greedy*/
+if(resultado_dificuldade(dificuldade) == 2){/*greedy*/
         if(opçaomenu == 1){                         /*inicia o jogo*/
 
 
@@ -473,7 +474,4 @@ if(resultado_dificuldade(dificuldade) == 3){/*ganha sempre*/
 
 
 }
- 
-
-
 }
