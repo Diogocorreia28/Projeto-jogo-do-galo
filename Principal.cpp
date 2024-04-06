@@ -1,10 +1,10 @@
 #include<iostream>
 #include<iomanip>
-#include<cstdlib>
+#include<cstdlib> //para o exit do programa e a função rand
+#include<time.h> // para poder usar o time em rand
+#include<cstring>
 using namespace std;
-
-
-    
+  
 
 int menu(){
 int opcao;
@@ -73,7 +73,14 @@ void verificafimdojogo(char matriz_de_jogo[3][3]){
     }
 }
 
-
+void jogada_computador(char matriz_de_jogo[3][3],int &linha,int &coluna) {
+        
+    
+        linha = rand()%(2-0+1);
+        coluna = rand()%(2-0+1); 
+    
+        
+}
 
 void colocar_valor(char matriz_de_jogo[3][3],int linha,int coluna){
 
@@ -83,7 +90,11 @@ void colocar_valor(char matriz_de_jogo[3][3],int linha,int coluna){
 
 }
 
+void colocar_valor_computador(char matriz_de_jogo[3][3],int linha,int coluna){
 
+   matriz_de_jogo[linha][coluna]='0';
+                        
+}
 
 void printmatriz(char matriz_de_jogo[3][3],int i){
    
@@ -116,12 +127,11 @@ void printmatriz(char matriz_de_jogo[3][3],int i){
 }
 } 
 
-bool verificarposicaoDisponivel(char matriz_de_jogo[3][3],int c, int l) {
+bool verificarposicaoDisponivel(char matriz_de_jogo[3][3],int l, int c) {
 
 
-    return ((c >= 0 && c <= 2 && l >= 0 && l <= 2 ) && matriz_de_jogo[c][l] != 'x' && matriz_de_jogo[c][l] != 'O');
+    return ((c >= 0 && c <= 2 && l >= 0 && l <= 2 ) && matriz_de_jogo[l][c] != 'x' && matriz_de_jogo[l][c] != '0');
 }
-
 
 void obtercoordenada(int &c,int &l){
     
@@ -158,16 +168,38 @@ int resultado_dificuldade(int dificuldade){
 return opçao_dificuldade;
 }
 
+void quem_joga_primeiro(int &p){
+    
+    cout << "Quem pretende que comece a jogar?" << endl;
+    cout << "1-Eu ou 2-Computador ou 3-aleatório" << endl;
+    do{
+        cin >> p;
+    }while(p<1 && p>3);
+
+    if(p == 3){
+
+        p = rand()%2;
+    }
+
+}
+
+void numero_jogada(int &n){
+        
+        cout << "\nJogada:" << n << endl;
+        n++;
+}
+
 int main(){
     int dificuldade;
     int opçaomenu,i=0;
     int coluna,linha;
+    int j,r=1;
     char x=' ',y=' ',z=' ',w=' ',s=' ',d=' ',a=' ',b=' ',c=' ';
     char matriz_de_jogo[3][3] = {{x,y,z},
-                                {a,b,c},
-                                {w,d,s}
+                                 {a,b,c},
+                                 {w,d,s}
     };
-
+    srand((unsigned int)time(NULL)); //plantar a semente 
 
     cout << "Bem vindo ao jogo do galo\n" << "Escolha a sua dificuldade\n\n" << endl;
     cout << "1-elementar\n" << "2-básico\n" << "3-médio\n" << endl;
@@ -178,55 +210,203 @@ int main(){
 
     if(resultado_dificuldade(dificuldade) == 1) {
         if(opçaomenu == 1) {
-
-            cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
+            j=1;
+            if(j==1 || j==3 ){ //quando o jogador joga primeiro
+            cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
             printmatriz(matriz_de_jogo,i=0);
             
             obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
 
             colocar_valor(matriz_de_jogo,linha,coluna);
+
+            
+            
             
             i=1;
+
+            numero_jogada(r);
 
             printmatriz(matriz_de_jogo,i);
 
             for(int n=0;n<9;n++){
-        
-            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            
+            numero_jogada(r);
+            jogada_computador(matriz_de_jogo,linha,coluna);
 
-            colocar_valor(matriz_de_jogo,linha,coluna);
-
-            while(verificarposicaoDisponivel(matriz_de_jogo,coluna,coluna,linha) != 1){
-                
-
-
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+                        
+                        jogada_computador(matriz_de_jogo,linha,coluna);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
             }
-           
+
+            colocar_valor_computador(matriz_de_jogo,linha,coluna);
 
             
             printmatriz(matriz_de_jogo,i);
 
             verificafimdojogo(matriz_de_jogo);
+            
+              //Função trocar jogador;
+
+           
 
             
+            numero_jogada(r);
+            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
 
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna,linha);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor(matriz_de_jogo,linha,coluna);
+           
+            printmatriz(matriz_de_jogo,i);
+
+            verificafimdojogo(matriz_de_jogo);
+            
             }
 
             cout << "Resultado: Empate" << endl;
-
-
-
-
-
-
-
-            
-
-
             
         }
+         //fim do jogo com eu primeiro
+
+
         if(opçaomenu == 2){                 /*escolhe contra quem joga*/
+
+        // Tem de haver uma função para escolher quem joga
+        // a função vai dar a informação por referencia de quem joga
+        quem_joga_primeiro(j);
+
+        if(j==1 || j==3 ){ //quando o jogador joga primeiro
+            cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
+            
+            printmatriz(matriz_de_jogo,i=0);
+            
+            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+
+            colocar_valor(matriz_de_jogo,linha,coluna);
+
+            
+            
+            
+            i=1;
+
+            numero_jogada(r);
+
+            printmatriz(matriz_de_jogo,i);
+
+            for(int n=0;n<9;n++){
+            
+            numero_jogada(r);
+            jogada_computador(matriz_de_jogo,linha,coluna);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+                        
+                        jogada_computador(matriz_de_jogo,linha,coluna);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha,coluna);
+
+            
+            printmatriz(matriz_de_jogo,i);
+
+            verificafimdojogo(matriz_de_jogo);
+            
+              //Função trocar jogador;
+
+           
+
+            
+            numero_jogada(r);
+            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna,linha);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor(matriz_de_jogo,linha,coluna);
+           
+            printmatriz(matriz_de_jogo,i);
+
+            verificafimdojogo(matriz_de_jogo);
+            
+            }
+
+            cout << "Resultado: Empate" << endl;
+            
+        }
+         //fim do jogo com eu primeiro
+
+        if(j == 2){
+                numero_jogada(r);
+
+                jogada_computador(matriz_de_jogo,linha,coluna);
+
+                colocar_valor_computador(matriz_de_jogo,linha,coluna);
+
+                printmatriz(matriz_de_jogo,i=1); 
+
+                cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
+            
+                i=1;
+
+            for(int n=0;n<9;n++){  
+
+            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna,linha);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor(matriz_de_jogo,linha,coluna);
+           
+            numero_jogada(r);    
+
+            printmatriz(matriz_de_jogo,i);
+
+            verificafimdojogo(matriz_de_jogo);
+            
+              //trocar jogador
+            
+            numero_jogada(r);
+
+            jogada_computador(matriz_de_jogo,linha,coluna);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+                        
+                        jogada_computador(matriz_de_jogo,linha,coluna);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha,coluna);
+
+            verificafimdojogo(matriz_de_jogo);
+           
+            printmatriz(matriz_de_jogo,i);
+            }
+
+
+            
+
+            cout << "Resultado: Empate" << endl;
+        }
+        }
+    
+        
+
+
 
 
         }
@@ -291,7 +471,6 @@ if(resultado_dificuldade(dificuldade) == 3){/*ganha sempre*/
     }
 
 
-    
 
 }
  
