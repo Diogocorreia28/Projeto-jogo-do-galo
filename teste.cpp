@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<iomanip>
 #include<cstdlib> //para o exit do programa e a função rand
@@ -6,10 +5,14 @@
 #include<cstring>
 #include<fstream>
 
-
-
-
 using namespace std;
+
+/*class variaveis{
+public:
+
+
+
+}*/
 
 int menu_dificuldades(){
    int dificuldade;
@@ -37,7 +40,6 @@ return opçao_dificuldade;
 
 
 }
-
 
 int menu(){
 int opcao;
@@ -81,12 +83,12 @@ do{
     }while(opcao>5 || opcao<0);
 }
 
-void verificafimdojogo(char matriz_de_jogo[3][3]){
+int verificafimdojogo(char matriz_de_jogo[3][3]){
  //verifica as linhas
    for (int i = 0; i < 3; ++i) {
         if (matriz_de_jogo[i][0] == matriz_de_jogo[i][1] && matriz_de_jogo[i][1] == matriz_de_jogo[i][2] && matriz_de_jogo[i][0] != ' ') {
             cout << "Resultado: Vitória" << endl;
-            exit(0);
+            return 9;
         }
      }
 
@@ -94,7 +96,7 @@ void verificafimdojogo(char matriz_de_jogo[3][3]){
     for (int j = 0; j < 3; ++j) {
         if (matriz_de_jogo[0][j] == matriz_de_jogo[1][j] && matriz_de_jogo[1][j] == matriz_de_jogo[2][j] && matriz_de_jogo[0][j] != ' ') {
             cout << "Resultado: Vitória" << endl;
-            exit(0);
+            return 9;
         }
     }
 
@@ -102,7 +104,36 @@ void verificafimdojogo(char matriz_de_jogo[3][3]){
     if ((matriz_de_jogo[0][0] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][2] && matriz_de_jogo[0][0] != ' ')
      || (matriz_de_jogo[0][2] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][0] && matriz_de_jogo[0][2] != ' ')) {
         cout << "Resultado: Vitória" << endl;
-        exit(0);
+        return 9;
+    }
+
+    
+}
+
+int verificafimdojogo_computador(char matriz_de_jogo[3][3]){
+ //verifica as linhas
+   for (int i = 0; i < 3; ++i) {
+        if (matriz_de_jogo[i][0] == matriz_de_jogo[i][1] && matriz_de_jogo[i][1] == matriz_de_jogo[i][2] && matriz_de_jogo[i][0] != ' ') {
+            cout << "Resultado: Derrota" << endl;
+            return 9;
+        }
+     }
+
+ //verificar colunas
+    for (int j = 0; j < 3; ++j) {
+        if (matriz_de_jogo[0][j] == matriz_de_jogo[1][j] && matriz_de_jogo[1][j] == matriz_de_jogo[2][j] && matriz_de_jogo[0][j] != ' ') {
+            cout << "Resultado: Derrota" << endl;
+            return 9;
+        }
+
+        
+    }
+
+//verificar diagonais
+    if ((matriz_de_jogo[0][0] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][2] && matriz_de_jogo[0][0] != ' ')
+     || (matriz_de_jogo[0][2] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][0] && matriz_de_jogo[0][2] != ' ')) {
+        cout << "Resultado: Derrota" << endl;
+        return 9;
     }
 }
 
@@ -202,9 +233,25 @@ void numero_jogada(int &n){
         cout << "\nJogada:" << n << endl;
         n++;
 }
+void tirar_valores(char matriz_de_jogo[3][3]){
+ //limpar linhas
+    int c=0;
+    for(c;c<3;c++){
+        
+        matriz_de_jogo[0][c] =' ';
+        matriz_de_jogo[1][c] =' ';
+        matriz_de_jogo[2][c] =' ';
+
+
+    }
+}
+
+//void jogada greedy()
+
+
 
 int main(){
-    int opçaomenu,i=0;
+    int opçaomenu,i=0,dificuldade;
     int coluna,linha;
     int j,r=1;
     string confirmar;
@@ -219,20 +266,9 @@ int main(){
     cout << "Bem vindo ao jogo do galo " << endl;
     
     
+   
+do{
     opçaomenu = menu();
-
-    if(opçaomenu == 5){   
-     do{                    /*fecha jogo*/
-      cout << "Tem a certeza que quer sair?\n" ;
-      getline(cin,confirmar);
-     }while(confirmar != "sim");
-     cout<< "a sair...";
-        exit(0);
-
-        }
-
-if(menu_dificuldades() == 1) {
-
         if(opçaomenu == 1) {
             j=1;
             if(j==1 || j==3 ){ //quando o jogador joga primeiro
@@ -270,13 +306,15 @@ if(menu_dificuldades() == 1) {
             
             printmatriz(matriz_de_jogo,i);
 
-            verificafimdojogo(matriz_de_jogo);
+            
             
               //Função trocar jogador;
-
+            if(verificafimdojogo_computador(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+                n=9;
+            }
            
 
-            
+            if(n!=9){
             numero_jogada(r);
             obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
 
@@ -290,16 +328,26 @@ if(menu_dificuldades() == 1) {
            
             printmatriz(matriz_de_jogo,i);
 
-            verificafimdojogo(matriz_de_jogo);
             
-            }
 
-            cout << "Resultado: Empate" << endl;
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+            }
             
+             if(n==8){
+            cout << "Resultado: Empate" << endl;
+            }
+            }
+            }
+            }
+             i=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
+             r=1;
+             tirar_valores(matriz_de_jogo);
+
         }
          //fim do jogo com eu primeiro
 
-        }
+        
 
         if(opçaomenu == 2){                 /*escolhe contra quem joga*/
 
@@ -342,13 +390,15 @@ if(menu_dificuldades() == 1) {
             
             printmatriz(matriz_de_jogo,i);
 
-            verificafimdojogo(matriz_de_jogo);
+            if(verificafimdojogo_computador(matriz_de_jogo) == 9){ 
+                n=9;
+            }
             
               //Função trocar jogador;
 
            
 
-            
+            if(n != 9){
             numero_jogada(r);
             obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
 
@@ -362,12 +412,18 @@ if(menu_dificuldades() == 1) {
            
             printmatriz(matriz_de_jogo,i);
 
-            verificafimdojogo(matriz_de_jogo);
-            
+           if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
             }
-
+              if(n==8){
             cout << "Resultado: Empate" << endl;
-            
+            }
+            }
+            }
+             i=0;
+             r=0;
+            tirar_valores(matriz_de_jogo);
+
         }
          //fim do jogo com eu primeiro
 
@@ -400,10 +456,12 @@ if(menu_dificuldades() == 1) {
 
             printmatriz(matriz_de_jogo,i);
 
-            verificafimdojogo(matriz_de_jogo);
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+            }
             
               //trocar jogador
-            
+            if(n != 9){
             numero_jogada(r);
 
             jogada_computador(matriz_de_jogo,linha,coluna);
@@ -417,20 +475,107 @@ if(menu_dificuldades() == 1) {
 
             colocar_valor_computador(matriz_de_jogo,linha,coluna);
 
-            verificafimdojogo(matriz_de_jogo);
+            verificafimdojogo_computador(matriz_de_jogo);
            
             printmatriz(matriz_de_jogo,i);
-            }
-
-
-            
-
+           
+             if(n==8){
             cout << "Resultado: Empate" << endl;
+            }
+           }
+           }
+               
         }
+
+        i=0;
+        r=0;
+        tirar_valores(matriz_de_jogo);
+
         }
 
         if(opçaomenu == 3){         /*escolher a dificuldade*/
-        //menu_dificuldades(); ver com joao por causa de andar a saltar
+        //menu_dificuldades(); 
+
+       dificuldade = menu_dificuldades();
+
+            switch(dificuldade){
+
+                    case(1):    //começar o jogo em fácil
+
+                         cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
+            
+            printmatriz(matriz_de_jogo,i=0);
+            
+            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+
+            colocar_valor(matriz_de_jogo,linha,coluna);
+
+            
+            i=1;
+
+            numero_jogada(r);
+
+            printmatriz(matriz_de_jogo,i);
+
+            for(int n=0;n<9;n++){
+            
+            numero_jogada(r);
+            jogada_computador(matriz_de_jogo,linha,coluna);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+                        
+                        jogada_computador(matriz_de_jogo,linha,coluna);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha,coluna);
+
+            
+            printmatriz(matriz_de_jogo,i);
+
+            verificafimdojogo(matriz_de_jogo);
+            
+              //Função trocar jogador;
+
+           
+
+            
+            numero_jogada(r);
+            obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna,linha);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+            }
+
+            colocar_valor(matriz_de_jogo,linha,coluna);
+           
+            printmatriz(matriz_de_jogo,i);
+
+            verificafimdojogo(matriz_de_jogo);
+            
+            }
+            cout << "Resultado: Empate" << endl;
+    
+            break;
+
+                    case(2):    // usa o greedy
+
+
+
+
+
+                    case(3):    //o computador ganha sempre
+
+
+
+
+            
+            }   
+
+
 
         }
 
@@ -439,58 +584,18 @@ if(menu_dificuldades() == 1) {
 
         }
 
+
+
+
+}while(opçaomenu !=5);
+
+ if(opçaomenu == 5){   
+     do{                    /*fecha jogo*/
+      cout << "Tem a certeza que quer sair?\n" ;
+      getchar() != '/n'; //para limpar o buffer
+      getline(cin,confirmar);
+     }while(confirmar != "sim");
+     cout<< "a sair...";
+        exit(0);
 }
-if(menu_dificuldades() == 2){/*greedy*/
-        if(opçaomenu == 1){                         /*inicia o jogo*/
-
-
         }
-        if(opçaomenu == 2){                 /*escolhe contra quem joga*/
-
-
-        }
-        if(opçaomenu == 3){         /*apaga histórico de jogadas*/
-
-
-        }
-        if(opçaomenu == 4){         /*mostra top 10*/
-
-
-        }
-        if(opçaomenu == 5){         /*fecha jogo*/
-
-
-        }
-
-    }
-
-if(menu_dificuldades() == 3){/*ganha sempre*/
-
-    if(opçaomenu == 1){                         /*inicia o jogo*/
-
-
-    }
-    if(opçaomenu == 2){                 /*escolhe contra quem joga*/
-
-
-    }
-    if(opçaomenu == 3){         /*apaga histórico de jogadas*/
-
-
-    }
-    if(opçaomenu == 4){         /*mostra top 10*/
-
-
-    }
-    if(opçaomenu == 5){         /*fecha jogo*/
-
-
-    }
-
-
-
-}
-//para ele fazer um tipo de jump para voltar para a dificuldade
-
-}
-
