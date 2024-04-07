@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<iomanip>
 #include<cstdlib> //para o exit do programa e a função rand
@@ -650,7 +649,7 @@ do{
             }
             }
              i=0;
-             r=0;
+             r=1;
             funcoes.tirar_valores(matriz_de_jogo);
 
         }
@@ -720,7 +719,7 @@ do{
         }
 
         i=0;
-        r=0;
+        r=1;
         funcoes.tirar_valores(matriz_de_jogo);
 
         }
