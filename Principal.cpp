@@ -42,12 +42,12 @@ int opcao;
 cout << "\nPor favor escolha uma das várias opções;\n"<< endl;
 
 do{
-    cout << "1-Iniciar jogo\n" << "2-Escolher quem inicia primeiro o jogo\n" << "3-Modo de funcionamento\n" << "4-Mostrar top 10\n" 
-         << "5-Sair\n" << endl;
+    cout << "1-Iniciar jogo\n" << "2-Escolher quem inicia primeiro o jogo\n" << "3-Modo de funcionamento\n" << "4-Sair\n" 
+         << endl;
 
     cout << "Opção:";
     cin >> opcao;
-}while(opcao<1 || opcao >5);
+}while(opcao<1 || opcao >4);
 do{
     switch(opcao){
 
@@ -66,15 +66,12 @@ do{
         return 3;
         break;
         
-        case(4):        /*  mostrar o top 10*/
+        case(4):        /*  fechar jogo*/
 
         return 4;
         break;
         
-        case(5):        /*  fechar o jogo*/
-
-        return 5;
-        break;
+ 
     }
     }while(opcao>5 || opcao<0);
 }
@@ -519,7 +516,7 @@ do{
 
             funcoes.printmatriz(matriz_de_jogo,i);
 
-            for(int n=0;n<9;n++){
+            for(int n=0;n<4;n++){
             
             funcoes.numero_jogada(r);
             funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
@@ -564,7 +561,7 @@ do{
                 n=9;
             }
             
-             if(n==8){
+             if(n<4){
             cout << "Resultado: Empate" << endl;
             }
             }
@@ -601,7 +598,7 @@ do{
 
             funcoes.printmatriz(matriz_de_jogo,i);
 
-            for(int n=0;n<9;n++){
+            for(int n=0;n<4;n++){
             
             funcoes.numero_jogada(r);
             funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
@@ -643,7 +640,7 @@ do{
            if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
                 n=9;
             }
-              if(n==8){
+              if(n<4){
             cout << "Resultado: Empate" << endl;
             }
             }
@@ -668,7 +665,7 @@ do{
             
                 i=1;
 
-            for(int n=0;n<9;n++){  
+            for(int n=0;n<4;n++){  
 
             funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
 
@@ -687,6 +684,10 @@ do{
             if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
                 n=9;
             }
+            if(n==4){
+            cout << "Resultado: Empate" << endl;
+            }
+             
             
               //trocar jogador
             if(n != 9){
@@ -710,12 +711,15 @@ do{
                 n=9;
 
             }
-             if(n==8){
+
+            if(n==3){
             cout << "Resultado: Empate" << endl;
             }
+            
            }
+         
            }
-               
+              
         }
 
         i=0;
@@ -750,7 +754,7 @@ do{
 
             funcoes.printmatriz(matriz_de_jogo,i);
 
-            for(int n=0;n<9;n++){
+            for(int n=0;n<4;n++){
             
             funcoes.numero_jogada(r);
             funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
@@ -795,7 +799,7 @@ do{
                 n=9;
             }
             
-             if(n==8){
+             if(n<4){
             cout << "Resultado: Empate" << endl;
             }
             }
@@ -829,7 +833,7 @@ do{
 
             funcoes.printmatriz(matriz_de_jogo,i);
 
-            for(int n=0;n<9;n++){
+            for(int n=0;n<4;n++){
             
             funcoes.numero_jogada(r);
             funcoes.jogada_nivel2(matriz_de_jogo,linha,coluna);
@@ -874,7 +878,7 @@ do{
                 n=9;
             }
             
-             if(n==8){
+             if(n<4){
             cout << "Resultado: Empate" << endl;
             }
             }
@@ -973,17 +977,10 @@ do{
             }//fecha o switch
         }//fecha opção 3;
 
-        if(opçaomenu == 4 ){         /*mostra top 10*/
 
+}while(opçaomenu !=4);
 
-        }
-
-        
-
-
-}while(opçaomenu !=5);
-
- if(opçaomenu == 5){   
+ if(opçaomenu == 4){   
      do{                    /*fecha jogo*/
       cout << "Tem a certeza que quer sair?\n" ;
       getchar() != '/n'; //para limpar o buffer
