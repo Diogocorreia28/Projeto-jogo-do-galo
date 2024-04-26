@@ -1,9 +1,14 @@
+/*Pontos a melhorar: classes com ficheiros implementar, o top 10 e fazer aquilo guardar,strings*/
+
+
+
 #include<iostream>
 #include<iomanip>
 #include<cstdlib> //para o exit do programa e a função rand
 #include<time.h> // para poder usar o time em rand
 #include<cstring>
-#include<fstream>
+#include "Funcoes.h"
+#include "Funcoes.cpp"
 
 using namespace std;
 
@@ -977,16 +982,29 @@ do{
             }//fecha o switch
         }//fecha opção 3;
 
+         if(opçaomenu == 4){   
+                    /*fecha jogo*/
+                    //perguntar como resolver o facto dele estar sempre a pedir duas
+        cout << "Tem a certeza que quer sair?\n";
+       
+        int tentativas = 0;
+        do {
+            if (tentativas > 0) {
+                cout << "Por favor, digite 'sim' para sair ou 'nao' para continuar: ";
+            }
+            while (getchar() != '\n'); // para limpar o buffer
+            getline(cin, confirmar);
+            tentativas++;
+        } while (confirmar != "sim" && confirmar != "nao");
 
-}while(opçaomenu !=4);
-
- if(opçaomenu == 4){   
-     do{                    /*fecha jogo*/
-      cout << "Tem a certeza que quer sair?\n" ;
-      getchar() != '/n'; //para limpar o buffer
-      getline(cin,confirmar);
-     }while(confirmar != "sim");
-     cout<< "a sair...";
-        exit(0);
-}
+        if(confirmar == "sim"){
+            cout << "A sair...";
+         
+            exit(0);
         }
+    
+    
+
+}
+}while(opçaomenu >= 1 && opçaomenu <=4);
+ }
