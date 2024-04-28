@@ -4,6 +4,8 @@
 #include<cstdlib> //para o exit do programa e a função rand
 #include<time.h> // para poder usar o time em rand
 #include<cstring>
+#include<fstream>
+
 using namespace std;
 
 Funcoes::Funcoes()
@@ -17,12 +19,22 @@ Funcoes::~Funcoes()
 }
 
 int Funcoes::menu_dificuldades(){
-    cout << "Escolha a sua dificuldade\n\n" << endl;
+    
+    do{
+       cout << "Escolha a sua dificuldade\n\n" << endl;
     cout << "1-elementar\n" << "2-básico\n" << "3-médio\n" << endl;
     cout << "Dificuldade-";
-    cin >> dificuldade;
+            if (!(cin >> dificuldade)) {
+            cout << "Entrada inválida. Por favor, insira um número." << endl;
+            cin.clear();            // Limpa o estado de erro do cin
+            cin.ignore(100, '\n');  // Limpa o buffer de entrada
 
-     int opçao_dificuldade;
+     }else{
+        break;
+     }
+} while(true);
+   
+    
     /*basicamente cada dificuldade*/
     switch(dificuldade){
                             case(1):        /*computador joga aleatoriamente perdendo maior parte das vezes*/
@@ -45,39 +57,42 @@ return opçao_dificuldade;
 int Funcoes::menu(){
     cout << "\nPor favor escolha uma das várias opções;\n"<< endl;
 
-do{
+do {
     cout << "1-Iniciar jogo\n" << "2-Escolher quem inicia primeiro o jogo\n" << "3-Modo de funcionamento\n" << "4-Sair\n" 
          << endl;
 
     cout << "Opção:";
-    cin >> opcao;
-}while(opcao<1 || opcao >4);
-do{
-    switch(opcao){
+     if (!(cin >> opcao)) {
+            cout << "Entrada inválida. Por favor, insira um número." << endl;
+            cin.clear();            // Limpa o estado de erro do cin
+            cin.ignore(100, '\n');  // Limpa o buffer de entrada
 
-        case(1):        /* inicia o jogo,aleatorio quem joga primeiro,criar função iniciar jogo */
+     }else{
+        break;
+     }
+} while(true);
 
-        return 1;
-        break;
+    switch(opcao) {
+        case 1: /* inicia o jogo,aleatorio quem joga primeiro,criar função iniciar jogo */
+            return 1;
+            break;
         
-        case(2):        /*  escolher contra quem quer jogar ou player ou pc*/
-
-        return 2;
-        break;
+        case 2: /*  escolher contra quem quer jogar ou player ou pc*/
+            return 2;
+            break;
         
-        case(3):        /*  apagar o histórico de jogadas*/
+        case 3: /*  apagar o histórico de jogadas*/
+            return 3;
+            break;
         
-        return 3;
-        break;
+        case 4: /*  fechar jogo*/
+            return 4;
+            break;
         
-        case(4):        /*  fechar jogo*/
-
-        return 4;
-        break;
-        
- 
+        default:
+           
+            break;
     }
-    }while(opcao>5 || opcao<0);
 }
 
 int Funcoes::verificafimdojogo(char matriz_de_jogo[3][3]){
@@ -186,16 +201,28 @@ bool Funcoes::verificarposicaoDisponivel(char matriz_de_jogo[3][3],int l, int c)
 void Funcoes::obtercoordenada(int &c,int &l){
     
     do{
-        cout << "Insira um numero para a linha" << endl;
-        cin >> l;
-        
-    }while(l != 0 && l != 1 && l != 2);
+        cout << "Insira um número para a linha" << endl;
+        if (!(cin >> l)) {
+            cout << "Entrada inválida. Por favor, insira um número." << endl;
+            cin.clear();            // Limpa o estado de erro do cin
+            cin.ignore(100, '\n');  // Limpa o buffer de entrada
+
+        }else{
+            break;
+        }
+    } while (true);
 
      do{
         cout << "Insira um numero para a coluna" << endl;
-        cin >> c;
-        
-    }while(c != 0 && c != 1 && c != 2);
+          if (!(cin >> c)) {
+            cout << "Entrada inválida. Por favor, insira um número." << endl;
+            cin.clear();            // Limpa o estado de erro do cin
+            cin.ignore(100, '\n');  // Limpa o buffer de entrada
+
+        }else{
+            break;
+        }
+    } while (true);
 
 }
 
@@ -204,8 +231,17 @@ void Funcoes::quem_joga_primeiro(int &p){
     cout << "\nQuem pretende que comece a jogar?" << endl;
     cout << "1-Eu ou 2-Computador ou 3-aleatório" << endl;
     do{
-        cin >> p;
-    }while(p<1 && p>3);
+          if (!(cin >> p)) {
+            cout << "Entrada inválida. Por favor, insira um número." << endl;
+            cin.clear();            // Limpa o estado de erro do cin
+            cin.ignore(100, '\n');  // Limpa o buffer de entrada
+
+     }else{
+        break;
+     }
+} while(true);
+        
+    
 
     if(p == 3){
 
@@ -464,3 +500,77 @@ for(int i = 0;i<3;i++){
         }
     }
 }
+
+void Funcoes::salvarJogos(const Jogo jogos[],int numeroJogos){
+    ofstream my_file("Top_10.txt");
+    if(my_file.is_open()){
+        for(int i=0;i<numeroJogos;i++){
+            my_file << jogos[i].resultado << endl;
+        }
+        my_file.close();
+    }else{
+        cout << "Erro ao abrir arquivo" << endl;
+    }
+}
+
+void Funcoes::carregarJogos(Jogo jogos[],int &numeroJogos){
+    ifstream my_file("Top_10.txt");
+
+    if(my_file.is_open()){
+       
+        while(getline(my_file,linha) && numeroJogos<Maxjogos){ //enquanto o getline for verdadeiro logo existem linha para ler e o numero <que o max ele 
+            jogos[numeroJogos].resultado=linha;
+            numeroJogos++;
+
+        }
+        my_file.close();
+    }else{
+            cout << "Erro ao abrir o ficheiro" << endl;
+    }
+    }
+
+void Funcoes::registrarJogo(Jogo jogos[], int &numeroJogos, const string &resultado){
+    Jogo jogo;
+    jogo.resultado=resultado;
+        if(numeroJogos< Maxjogos){
+
+            jogos[numeroJogos]=jogo;
+            numeroJogos++;
+        }else{
+            for(int i=0;i<Maxjogos-1;i++){
+                jogos[i] = jogos[i+1]; //para ir substiruir os antigos
+            }
+            jogos[Maxjogos-1]=jogo;
+        }
+        salvarJogos(jogos,numeroJogos);
+}
+
+void Funcoes::mostrarTop10(const Jogo jogos[], int numeroJogos){
+        cout << "Top 10 dos ultimos jogos:\n";
+
+        int inicio=max(0,numeroJogos-Maxjogos);
+        for(int i=inicio;i<numeroJogos;i++){
+
+            cout << (i-inicio+1) << "Resultado:" << jogos[i].resultado;
+        }
+
+}
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
