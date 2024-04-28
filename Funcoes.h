@@ -1,17 +1,32 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
-
+#include <string>
 #pragma once
 
+using namespace std;
+
 class Funcoes{
+ 
+protected:
 
-
-public:
-
- int dificuldade;
+    int dificuldade;
     int opcao;
     int x;
+    int opçao_dificuldade;
 
+     
+
+public:
+  
+   struct Jogo {
+    string resultado;
+     
+};
+    
+    string linha;
+    const int Maxjogos=10;
+    int numeroJogos=0;
+   
     Funcoes();
     ~Funcoes();
 
@@ -44,6 +59,15 @@ public:
     void jogada_nivel2(char matriz_de_jogo[3][3],int &linha,int &coluna);
 
     void jogada_nivel3(char matriz_de_jogo[3][3],int &linha,int &coluna);
+
+    //top 10
+    void salvarJogos(const Jogo jogos[], int numeroJogos);
+
+    void carregarJogos(Jogo jogos[], int& numeroJogos);
+
+    void registrarJogo(Jogo jogos[], int& numeroJogos, const string &resultado);
+
+    void mostrarTop10(const Jogo jogos[], int numeroJogos);
 };
 
 #endif
