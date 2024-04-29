@@ -10,9 +10,7 @@
 #include "Funcoes.cpp"
 #include"Funcoes.h"
 
-
 using namespace std;
-
 
 int main(){
    
@@ -20,6 +18,7 @@ int main(){
    //Falar com professor pois não consigo passar do .h para aqui
 
     Funcoes funcoes;
+    top10 top_10;
 
     srand((unsigned int)time(NULL)); //plantar a semente 
 
@@ -70,6 +69,10 @@ do{
               //Função trocar jogador;
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
+                top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Derrota";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
            
 
@@ -90,13 +93,21 @@ do{
             
 
             if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
+
                 n=9;
+                      top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Vitoria";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             
              if(n==3){
             cout << "Resultado: Empate" << endl;
-            funcoes.resultado_main="Empate";
-            funcoes.registrarJogo(funcoes.jogo,funcoes.numeroJogos,funcoes.resultado_main);
+            
+                  top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             }
             }
@@ -150,6 +161,10 @@ do{
             funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ 
+                     top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Derrota";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
                 n=9;
             }
             
@@ -172,10 +187,19 @@ do{
             funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
+
                 n=9;
+                     top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Vitoria";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
               if(n==3){
             cout << "Resultado: Empate" << endl;
+                      top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             }
             }
@@ -217,9 +241,17 @@ do{
 
             if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
+                       top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Vitoria";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             if(n==4){
             cout << "Resultado: Empate" << endl;
+                      top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
              
             
@@ -243,11 +275,19 @@ do{
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo)==9){
                 
                 n=9;
+                       top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Derrota";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
 
             }
 
             if(n==3){
             cout << "Resultado: Empate" << endl;
+                    top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             
            }
@@ -309,7 +349,14 @@ do{
             
               //Função trocar jogador;
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+
                 n=9;
+
+
+                     top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Derrota";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
            
 
@@ -331,10 +378,19 @@ do{
 
             if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
+                          top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Vitoria";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             
              if(n==4){
             cout << "Resultado: Empate" << endl;
+                      top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
+
             }
             }
             }
@@ -389,6 +445,10 @@ do{
               //Função trocar jogador;
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
+                          top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Derrota";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
            
 
@@ -410,10 +470,20 @@ do{
 
             if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
+                       top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Vitoria";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             
              if(n==3){
             cout << "Resultado: Empate" << endl;
+
+                     top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
+
             }
             }
             }
@@ -468,6 +538,10 @@ do{
               //Função trocar jogador;
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
+                          top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Derrota";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
            
 
@@ -489,10 +563,18 @@ do{
 
             if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
+            top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Vitoria";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             
              if(n==3){
             cout << "Resultado: Empate" << endl;
+            top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+            top_10.resultado_main="Empate";
+            top_10.registrarJogo(top_10.jogo,top_10.numeroJogos,top_10.resultado_main);
+            top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
             }
             }
             }
@@ -510,8 +592,14 @@ do{
             
             }//fecha o switch
         }//fecha opção 3;
+        if(funcoes.opçaomenu_jogo==4){ //Mostra top-10
 
-         if(funcoes.opçaomenu_jogo == 4){   
+                top_10.carregarJogos(top_10.jogo,top_10.numeroJogos);
+
+                top_10.mostrarTop10(top_10.jogo,top_10.numeroJogos);
+
+        }
+         if(funcoes.opçaomenu_jogo == 5){   
                     /*fecha jogo*/
                     //perguntar como resolver o facto dele estar sempre a pedir duas
         cout << "Tem a certeza que quer sair?\n";
@@ -535,15 +623,16 @@ do{
     
 
 }
-}while(funcoes.opçaomenu_jogo >= 1 && funcoes.opçaomenu_jogo <=4);
+}while(funcoes.opçaomenu_jogo >= 1 && funcoes.opçaomenu_jogo <=5);
  }
 
  /* Medidas novas a implementar:
     -O computador jogar contra si mesmo com dificuldades diferentes
     -Nivel avançado,nunca perdende, empata ou ganha(tentar jogar no meio caso não seja possível jogar nas pontas)
     -Implementação de dois jogadores humanos
-    -continuação top 10
+    -continuação top 10(feito)
     -Tabuleiro a ser desenhado à direita (talvez por ficheiros ou manipolação colocando a função)
+     criar 10 variaveis para ele ir armazenando as matrizes e depois is mostrando
 
 
 
