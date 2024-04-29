@@ -15,31 +15,11 @@ using namespace std;
 
 
 int main(){
-    int opçaomenu,i=0,dificuldade;
-    int coluna,linha;
-    int j,r=1;
-    string confirmar;
-    string resultado;
-    char x=' ',y=' ',z=' ',w=' ',s=' ',d=' ',a=' ',b=' ',c=' ';
-    char matriz_de_jogo[3][3] = {{x,y,z},
-                                 {a,b,c},
-                                 {w,d,s}
-    };
+   
 
    //Falar com professor pois não consigo passar do .h para aqui
 
-    
-    string linha_top10;
-    const int Maxjogos=10;
-    int numeroJogos=0;
-    struct Jogo {
-    string resultado;
-     
-}jogo[Maxjogos];
-
     Funcoes funcoes;
-    
-
 
     srand((unsigned int)time(NULL)); //plantar a semente 
 
@@ -47,129 +27,129 @@ int main(){
     
    
 do{
-    opçaomenu = funcoes.menu();
-        if(opçaomenu == 1) {
-            j=1;
-            if(j==1 || j==3 ){ //quando o jogador joga primeiro
+    funcoes.opçaomenu_jogo = funcoes.menu();
+        if(funcoes.opçaomenu_jogo == 1) {
+            funcoes.j_main=1;
+            if(funcoes.j_main==1 || funcoes.j_main==3 ){ //quando o jogador joga primeiro
             cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
-            funcoes.printmatriz(matriz_de_jogo,i=0);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0);
             
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
             
             
-            i=1;
+            funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(r);
+            funcoes.numero_jogada(funcoes.r_main);
 
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(r);
-            funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
                         
-                        funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+                        funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
                         
-                       funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                       funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
             
               //Função trocar jogador;
-            if(funcoes.verificafimdojogo_computador(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
             }
            
 
             if(n!=9){
-            funcoes.numero_jogada(r);
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
                         cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(coluna,linha);
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
 
-            if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
+            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
             
              if(n==3){
             cout << "Resultado: Empate" << endl;
-            resultado="Empate";
-            funcoes.registrarJogo(jogos,numeroJogos,resultado);
+            funcoes.resultado_main="Empate";
+            funcoes.registrarJogo(funcoes.jogo,funcoes.numeroJogos,funcoes.resultado_main);
             }
             }
             }
             }
-             i=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
-             r=1;
-             funcoes.tirar_valores(matriz_de_jogo);
+            funcoes. i_jogo=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
+             funcoes.r_main=1;
+             funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
         }
          //fim do jogo com eu primeiro
 
-        if(opçaomenu == 2){                 /*escolhe contra quem joga*/
+        if(funcoes.opçaomenu_jogo == 2){                 /*escolhe contra quem joga*/
 
         // Tem de haver uma função para escolher quem joga
         // a função vai dar a informação por referencia de quem joga
-        funcoes.quem_joga_primeiro(j);
+        funcoes.quem_joga_primeiro(funcoes.j_main);
 
-        if(j==1 ){ //quando o jogador joga primeiro
+        if(funcoes.j_main==1 ){ //quando o jogador joga primeiro
             cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
-            funcoes.printmatriz(matriz_de_jogo,i=0);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0);
             
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
             
             
-            i=1;
+            funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(r);
+            funcoes.numero_jogada(funcoes.r_main);
 
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(r);
-            funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
                         
-                        funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+                        funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
                         
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
-            if(funcoes.verificafimdojogo_computador(matriz_de_jogo) == 9){ 
+            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
             
@@ -178,20 +158,20 @@ do{
            
 
             if(n != 9){
-            funcoes.numero_jogada(r);
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
                         cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(coluna,linha);
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
-           if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
+           if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
               if(n==3){
@@ -199,43 +179,43 @@ do{
             }
             }
             }
-             i=0;
-             r=1;
-            funcoes.tirar_valores(matriz_de_jogo);
+             funcoes.i_jogo=0;
+             funcoes.r_main=1;
+            funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
         }
          //fim do jogo com eu primeiro
 
-        if(j == 2){
-                funcoes.numero_jogada(r);
+        if(funcoes.j_main == 2){
+                funcoes.numero_jogada(funcoes.r_main);
 
-                funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+                funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-                funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+                funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-                funcoes.printmatriz(matriz_de_jogo,i=1); 
+                funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=1); 
 
                 cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
             
-                i=1;
+                funcoes.i_jogo=1;
 
             for(int n=0;n<4;n++){  
 
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
                         cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(coluna,linha);
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.numero_jogada(r);    
+            funcoes.numero_jogada(funcoes.r_main);    
 
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
-            if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
+            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
             if(n==4){
@@ -245,22 +225,22 @@ do{
             
               //trocar jogador
             if(n != 9){
-            funcoes.numero_jogada(r);
+            funcoes.numero_jogada(funcoes.r_main);
 
-            funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+            funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
                         
-                        funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+                        funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
                         
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
-            if(funcoes.verificafimdojogo_computador(matriz_de_jogo)==9){
+            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo)==9){
                 
                 n=9;
 
@@ -276,80 +256,80 @@ do{
               
         }
 
-        i=0;
-        r=1;
-        funcoes.tirar_valores(matriz_de_jogo);
+       funcoes.i_jogo=0;
+        funcoes.r_main=1;
+        funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
         }
 
-        if(opçaomenu == 3){         /*escolher a dificuldade*/
+        if(funcoes.opçaomenu_jogo == 3){         /*escolher a dificuldade*/
         //menu_dificuldades(); 
 
-       dificuldade = funcoes.menu_dificuldades();
+       funcoes.dificuldade_main = funcoes.menu_dificuldades();
 
-            switch(dificuldade){
+            switch(funcoes.dificuldade_main){
 
                     case(1):    //começar o jogo em fácil
 
                          cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
-            funcoes.printmatriz(matriz_de_jogo,i=0);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0);
             
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
             
             
-            i=1;
+            funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(r);
+            funcoes.numero_jogada(funcoes.r_main);
 
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(r);
-            funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
                         
-                        funcoes.jogada_computador(matriz_de_jogo,linha,coluna);
+                        funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
                         
-                       funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                       funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
             
               //Função trocar jogador;
-            if(funcoes.verificafimdojogo_computador(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
             }
            
 
             if(n!=9){
-            funcoes.numero_jogada(r);
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
                         cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(coluna,linha);
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
 
-            if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
+            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
             
@@ -359,9 +339,9 @@ do{
             }
             }
             
-             i=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
-             r=1;
-             funcoes.tirar_valores(matriz_de_jogo);
+             funcoes.i_jogo=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
+             funcoes.r_main=1;
+             funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
             break;
 
@@ -372,63 +352,63 @@ do{
                     
                     cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
-            funcoes.printmatriz(matriz_de_jogo,i=0);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0);
             
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
             
             
-            i=1;
+            funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(r);
+            funcoes.numero_jogada(funcoes.r_main);
 
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(r);
-            funcoes.jogada_nivel2(matriz_de_jogo,linha,coluna);
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.jogada_nivel2(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main );
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
                         
-                        funcoes.jogada_nivel2(matriz_de_jogo,linha,coluna);
+                        funcoes.jogada_nivel2(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
                         
-                       funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                       funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
             
               //Função trocar jogador;
-            if(funcoes.verificafimdojogo_computador(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
             }
            
 
             if(n!=9){
-            funcoes.numero_jogada(r);
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
                         cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(coluna,linha);
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
 
-            if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
+            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
             
@@ -438,9 +418,9 @@ do{
             }
             }
             
-             i=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
-             r=1;
-             funcoes.tirar_valores(matriz_de_jogo);
+             funcoes.i_jogo=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
+             funcoes.r_main=1;
+             funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
             break;
 
@@ -451,63 +431,63 @@ do{
 
             cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n";
             
-            funcoes.printmatriz(matriz_de_jogo,i=0);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0);
             
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+        funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
             
             
-            i=1;
+            funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(r);
+            funcoes.numero_jogada(funcoes.r_main);
 
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(r);
-            funcoes.jogada_nivel3(matriz_de_jogo,linha,coluna);
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.jogada_nivel3(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){  //verificar a linha do computador
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
                         
-                        funcoes.jogada_nivel3(matriz_de_jogo,linha,coluna);
+                        funcoes.jogada_nivel3(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
                         
-                       funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                       funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor_computador(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
             
               //Função trocar jogador;
-            if(funcoes.verificafimdojogo_computador(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
                 n=9;
             }
            
 
             if(n!=9){
-            funcoes.numero_jogada(r);
-            funcoes.obtercoordenada(coluna,linha); // Aqui chama a função para obter as coordenadas
+            funcoes.numero_jogada(funcoes.r_main);
+            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
-            while(funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna) != 1){
+            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
                         cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(coluna,linha);
-                        funcoes.verificarposicaoDisponivel(matriz_de_jogo,linha,coluna);
+                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
+                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
             }
 
-            funcoes.colocar_valor(matriz_de_jogo,linha,coluna);
+            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(matriz_de_jogo,i);
+            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
 
             
 
-            if(funcoes.verificafimdojogo(matriz_de_jogo) == 9){ 
+            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
                 n=9;
             }
             
@@ -517,9 +497,9 @@ do{
             }
             }
             
-             i=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
-             r=1;
-             funcoes.tirar_valores(matriz_de_jogo);
+             funcoes.i_jogo=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
+             funcoes.r_main=1;
+             funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
             break;
 
@@ -531,7 +511,7 @@ do{
             }//fecha o switch
         }//fecha opção 3;
 
-         if(opçaomenu == 4){   
+         if(funcoes.opçaomenu_jogo == 4){   
                     /*fecha jogo*/
                     //perguntar como resolver o facto dele estar sempre a pedir duas
         cout << "Tem a certeza que quer sair?\n";
@@ -542,11 +522,11 @@ do{
                 cout << "Por favor, digite 'sim' para sair ou 'nao' para continuar: ";
             }
             while (getchar() != '\n'); // para limpar o buffer
-            getline(cin, confirmar);
+            getline(cin, funcoes.confirmar_main);
             tentativas++;
-        } while (confirmar != "sim" && confirmar != "nao");
+        } while (funcoes.confirmar_main != "sim" && funcoes.confirmar_main != "nao");
 
-        if(confirmar == "sim"){
+        if(funcoes.confirmar_main == "sim"){
             cout << "A sair...";
          
             exit(0);
@@ -555,7 +535,7 @@ do{
     
 
 }
-}while(opçaomenu >= 1 && opçaomenu <=4);
+}while(funcoes.opçaomenu_jogo >= 1 && funcoes.opçaomenu_jogo <=4);
  }
 
  /* Medidas novas a implementar:
