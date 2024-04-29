@@ -8,24 +8,37 @@ using namespace std;
 class Funcoes{
  
 protected:
-
+    //das funções
     int dificuldade;
     int opcao;
     int x;
     int opçao_dificuldade;
 
+
      
 
 public:
-  
-   struct Jogo {
-    string resultado;
-     
-};
-    
+    //usadas no main
+    int opçaomenu_jogo,i_jogo=0,dificuldade_main;
+    int coluna_main,linha_main;
+    int j_main,r_main=1;
+    string confirmar_main;
+    string resultado_main;
+    char x_main=' ',y=' ',z=' ',w=' ',s=' ',d=' ',a=' ',b=' ',c=' ';
+    char matriz_de_jogo[3][3] = {{x_main,y,z},
+                                 {a,b,c},
+                                 {w,d,s}
+    };
+
+    //usadas no top10
     string linha;
     const int Maxjogos=10;
     int numeroJogos=0;
+
+    struct Jogo {
+    string resultado;
+     
+    }jogo[10];
    
     Funcoes();
     ~Funcoes();
