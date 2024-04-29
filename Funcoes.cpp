@@ -58,7 +58,7 @@ int Funcoes::menu(){
     cout << "\nPor favor escolha uma das várias opções;\n"<< endl;
 
 do {
-    cout << "1-Iniciar jogo\n" << "2-Escolher quem inicia primeiro o jogo\n" << "3-Modo de funcionamento\n" << "4-Sair\n" 
+    cout << "1-Iniciar jogo\n" << "2-Escolher quem inicia primeiro o jogo\n" << "3-Modo de funcionamento\n" << "4-Mostrar top 10\n" <<"5-Sair\n"
          << endl;
 
     cout << "Opção:";
@@ -81,14 +81,18 @@ do {
             return 2;
             break;
         
-        case 3: /*  apagar o histórico de jogadas*/
+        case 3: /*  Dificuldade*/
             return 3;
             break;
         
-        case 4: /*  fechar jogo*/
+        case 4: /*  Mostra top 10*/
             return 4;
             break;
         
+
+        case 5: 
+                return 5;
+                break;//Fecha jogo
         default:
            
             break;
@@ -99,7 +103,7 @@ int Funcoes::verificafimdojogo(char matriz_de_jogo[3][3]){
  //verifica as linhas
    for (int i = 0; i < 3; ++i) {
         if (matriz_de_jogo[i][0] == matriz_de_jogo[i][1] && matriz_de_jogo[i][1] == matriz_de_jogo[i][2] && matriz_de_jogo[i][0] != ' ') {
-            cout << "Resultado: Vitória" << endl;
+            cout << "Resultado: Vitória\n" << endl;
             return 9;
         }
      }
@@ -107,7 +111,7 @@ int Funcoes::verificafimdojogo(char matriz_de_jogo[3][3]){
  //verificar colunas
     for (int j = 0; j < 3; ++j) {
         if (matriz_de_jogo[0][j] == matriz_de_jogo[1][j] && matriz_de_jogo[1][j] == matriz_de_jogo[2][j] && matriz_de_jogo[0][j] != ' ') {
-            cout << "Resultado: Vitória" << endl;
+            cout << "Resultado: Vitória\n" << endl;
             return 9;
         }
     }
@@ -115,7 +119,7 @@ int Funcoes::verificafimdojogo(char matriz_de_jogo[3][3]){
 //verificar diagonais
     if ((matriz_de_jogo[0][0] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][2] && matriz_de_jogo[0][0] != ' ')
      || (matriz_de_jogo[0][2] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][0] && matriz_de_jogo[0][2] != ' ')) {
-        cout << "Resultado: Vitória" << endl;
+        cout << "Resultado: Vitória\n" << endl;
         return 9;
     }
 
@@ -126,7 +130,7 @@ int Funcoes::verificafimdojogo_computador(char matriz_de_jogo[3][3]){
  //verifica as linhas
    for (int i = 0; i < 3; ++i) {
         if (matriz_de_jogo[i][0] == matriz_de_jogo[i][1] && matriz_de_jogo[i][1] == matriz_de_jogo[i][2] && matriz_de_jogo[i][0] != ' ') {
-            cout << "Resultado: Derrota" << endl;
+            cout << "Resultado: Derrota\n" << endl;
             return 9;
         }
      }
@@ -134,7 +138,7 @@ int Funcoes::verificafimdojogo_computador(char matriz_de_jogo[3][3]){
  //verificar colunas
     for (int j = 0; j < 3; ++j) {
         if (matriz_de_jogo[0][j] == matriz_de_jogo[1][j] && matriz_de_jogo[1][j] == matriz_de_jogo[2][j] && matriz_de_jogo[0][j] != ' ') {
-            cout << "Resultado: Derrota" << endl;
+            cout << "Resultado: Derrota\n" << endl;
             return 9;
         }
 
@@ -144,7 +148,7 @@ int Funcoes::verificafimdojogo_computador(char matriz_de_jogo[3][3]){
 //verificar diagonais
     if ((matriz_de_jogo[0][0] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][2] && matriz_de_jogo[0][0] != ' ')
      || (matriz_de_jogo[0][2] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][0] && matriz_de_jogo[0][2] != ' ')) {
-        cout << "Resultado: Derrota" << endl;
+        cout << "Resultado: Derrota\n" << endl;
         return 9;
     }
 }
@@ -501,7 +505,7 @@ for(int i = 0;i<3;i++){
     }
 }
 
-void Funcoes::salvarJogos(const Jogo jogos[],int numeroJogos){
+void top10::salvarJogos(const Jogo jogos[],int numeroJogos){
     ofstream my_file("Top_10.txt");
     if(my_file.is_open()){
         for(int i=0;i<numeroJogos;i++){
@@ -513,7 +517,7 @@ void Funcoes::salvarJogos(const Jogo jogos[],int numeroJogos){
     }
 }
 
-void Funcoes::carregarJogos(Jogo jogos[],int &numeroJogos){
+void top10::carregarJogos(Jogo jogos[],int &numeroJogos){
     ifstream my_file("Top_10.txt");
 
     if(my_file.is_open()){
@@ -529,7 +533,7 @@ void Funcoes::carregarJogos(Jogo jogos[],int &numeroJogos){
     }
     }
 
-void Funcoes::registrarJogo(Jogo jogos[], int &numeroJogos, const string &resultado){
+void top10::registrarJogo(Jogo jogos[], int &numeroJogos, const string &resultado){
     Jogo jogo;
     jogo.resultado=resultado;
         if(numeroJogos< Maxjogos){
@@ -545,13 +549,13 @@ void Funcoes::registrarJogo(Jogo jogos[], int &numeroJogos, const string &result
         salvarJogos(jogos,numeroJogos);
 }
 
-void Funcoes::mostrarTop10(const Jogo jogos[], int numeroJogos){
+void top10::mostrarTop10(const Jogo jogos[], int numeroJogos){
         cout << "Top 10 dos ultimos jogos:\n";
 
         int inicio=max(0,numeroJogos-Maxjogos);
         for(int i=inicio;i<numeroJogos;i++){
 
-            cout << (i-inicio+1) << "Resultado:" << jogos[i].resultado;
+            cout << (i-inicio+1)  << "  Resultado:" << jogos[i].resultado<<endl;
         }
 
 }
