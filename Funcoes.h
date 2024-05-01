@@ -14,6 +14,9 @@ protected:
     int x;
     int opçao_dificuldade;
 
+     
+
+
 
 public:
     //usadas no main
@@ -27,6 +30,15 @@ public:
                                  {w,d,s}
     };
 
+         string linha;
+    const int Maxjogos=10;
+    int numeroJogos=0;
+    string resultado_main;
+
+    struct Jogo {
+    string resultado;
+     
+    }jogo[10];
 
    
     Funcoes();
@@ -61,21 +73,19 @@ public:
     void jogada_nivel2(char matriz_de_jogo[3][3],int &linha,int &coluna);
 
     void jogada_nivel3(char matriz_de_jogo[3][3],int &linha,int &coluna);
+    
+    void colocar_valor2(char matriz_de_jogo[3][3],int linha,int coluna);
+
+    int  verificafimdojogo2(char matriz_de_jogo[3][3]);
+
+    void jogadorVSjogador();
+
 
 };
 
 class top10   : public Funcoes{
    
     public:
-    string linha;
-    const int Maxjogos=10;
-    int numeroJogos=0;
-    string resultado_main;
-
-    struct Jogo {
-    string resultado;
-     
-    }jogo[10];
 
         //top 10
     void salvarJogos(const Jogo jogos[], int numeroJogos);
