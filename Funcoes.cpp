@@ -21,18 +21,18 @@ Funcoes::~Funcoes()
 int Funcoes::menu_dificuldades(){
     
     do{
-       cout << "Escolha a sua dificuldade\n\n" << endl;
-    cout << "1-elementar\n" << "2-básico\n" << "3-médio\n" << endl;
-    cout << "Dificuldade-";
+       cout << "Escolha o modo de funcionamento\n\n" << endl;
+    cout << "1-elementar\n" << "2-básico\n" << "3-médio \n" << "4-avançado\n" << "5-dois jogadores\n" << "6-computador contra computador\n" << endl;
+    cout << "Modo-";
             if (!(cin >> dificuldade)) {
-            cout << "Entrada inválida. Por favor, insira um número." << endl;
+            cout << "Entrada inválida. Por favor, insira um número válido." << endl;
             cin.clear();            // Limpa o estado de erro do cin
             cin.ignore(100, '\n');  // Limpa o buffer de entrada
 
      }else{
         break;
      }
-} while(true);
+} while(true && dificuldade<1 && dificuldade>6);
    
     
     /*basicamente cada dificuldade*/
@@ -46,6 +46,15 @@ int Funcoes::menu_dificuldades(){
                             break;
                             case(3):        /*o computador ganha na jogada corrente, não sendo possível faz empate*/
                                     opçao_dificuldade=3;
+                            break;
+                            case(4):        //modo avançado
+                                    opçao_dificuldade=4;
+                            break;
+                            case(5):        //jogador contra jogador
+                                    opçao_dificuldade=5;
+                            break;
+                            case(6):        //computador computador
+                                    opçao_dificuldade=6;
                             break;
 
     }
@@ -233,7 +242,7 @@ void Funcoes::obtercoordenada(int &c,int &l){
 void Funcoes::quem_joga_primeiro(int &p){
     
     cout << "\nQuem pretende que comece a jogar?" << endl;
-    cout << "1-Eu ou 2-Computador ou 3-aleatório" << endl;
+    cout << "1-Eu ou 2-Computador ou 3-Aleatório" << endl;
     do{
           if (!(cin >> p)) {
             cout << "Entrada inválida. Por favor, insira um número." << endl;
@@ -560,7 +569,123 @@ void top10::mostrarTop10(const Jogo jogos[], int numeroJogos){
 
 }
 
+void Funcoes::colocar_valor2(char matriz_de_jogo[3][3],int linha,int coluna){
+       matriz_de_jogo[linha][coluna]='O';
+}
 
+int Funcoes::verificafimdojogo2(char matriz_de_jogo[3][3]){
+ //verifica as linhas
+   for (int i = 0; i < 3; ++i) {
+        if (matriz_de_jogo[i][0] == matriz_de_jogo[i][1] && matriz_de_jogo[i][1] == matriz_de_jogo[i][2] && matriz_de_jogo[i][0] != ' ') {
+            cout << "Resultado: vitoria jogador 2\n" << endl;
+            return 9;
+        }
+     }
+
+ //verificar colunas
+    for (int j = 0; j < 3; ++j) {
+        if (matriz_de_jogo[0][j] == matriz_de_jogo[1][j] && matriz_de_jogo[1][j] == matriz_de_jogo[2][j] && matriz_de_jogo[0][j] != ' ') {
+            cout << "Resultado: vitória jogador 2\n" << endl;
+            return 9;
+        }
+    }
+
+//verificar diagonais
+    if ((matriz_de_jogo[0][0] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][2] && matriz_de_jogo[0][0] != ' ')
+     || (matriz_de_jogo[0][2] == matriz_de_jogo[1][1] && matriz_de_jogo[1][1] == matriz_de_jogo[2][0] && matriz_de_jogo[0][2] != ' ')) {
+        cout << "Resultado: vitória jogador 2\n" << endl;
+        return 9;
+    }
+
+    
+}
+
+
+void Funcoes::jogadorVSjogador(){
+
+    top10 top_10;
+            printmatriz(matriz_de_jogo,i_jogo=0);
+            
+            obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
+
+            colocar_valor(matriz_de_jogo,linha_main,coluna_main);
+
+
+            i_jogo=1;
+
+            numero_jogada(r_main);
+
+            printmatriz(matriz_de_jogo,i_jogo);
+
+
+
+            for(int n=0;n<4;n++){
+            //Jogador-2
+                 numero_jogada(r_main);
+            obtercoordenada(coluna_main,linha_main); // criar funcao para jogador 2
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna_main,linha_main);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+           colocar_valor2(matriz_de_jogo,linha_main,coluna_main); // criar funcao para jogador 2
+           
+           printmatriz(matriz_de_jogo,i_jogo);
+
+            if(verificafimdojogo2(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
+
+                n=9;
+
+
+                     
+            resultado_main="Vitoria jogador 2";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+
+
+            if(n!=9){
+            numero_jogada(r_main);
+            obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna_main,linha_main);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor(matriz_de_jogo,linha_main,coluna_main);
+           
+            printmatriz(matriz_de_jogo,i_jogo);
+
+            
+
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+                          
+            resultado_main="Vitoria jogador 1";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            
+             if(n==4){
+            cout << "Resultado: Empate jogador Vs jogador" << endl;
+                  
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+
+            }
+        }
+
+        }
+        i_jogo=0; //para quando o jogo acaba o utilizador se voltar a escolher menu aparece tudo de novo
+        r_main=1;
+        tirar_valores(matriz_de_jogo);
+
+}   
 
 
 
