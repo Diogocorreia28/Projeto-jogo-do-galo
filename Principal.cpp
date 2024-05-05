@@ -141,13 +141,13 @@ do{
             
             funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(funcoes.r_main);
+            
 
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
@@ -160,7 +160,7 @@ do{
             funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo) == 9){ 
                     
@@ -175,7 +175,7 @@ do{
            
 
             if(n != 9){
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
@@ -186,7 +186,7 @@ do{
 
             funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
 
@@ -213,95 +213,15 @@ do{
          //fim do jogo com eu primeiro
 
         if(funcoes.j_main == 2){
-                funcoes.numero_jogada(funcoes.r_main);
-
-                funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-
-                funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-
-                funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=1); 
-
-                cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
-            
-                funcoes.i_jogo=1;
-
-            for(int n=0;n<4;n++){  
-
-            funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
-
-            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
-                        cout << "\nA linha já se encontra preenchida"<< endl;
-                        funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main);
-                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-            }
-
-            funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-           
-            funcoes.numero_jogada(funcoes.r_main);    
-
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
-
-            if(funcoes.verificafimdojogo(funcoes.matriz_de_jogo) == 9){ 
-                n=9;
-                      
-            funcoes.resultado_main="Vitoria";
-            top_10.registrarJogo(funcoes.jogo,funcoes.numeroJogos,funcoes.resultado_main);
-            top_10.mostrarTop10(funcoes.jogo,funcoes.numeroJogos);
-            }
-            if(n==4){
-            cout << "Resultado: Empate" << endl;
-                     
-            funcoes.resultado_main="Empate";
-            top_10.registrarJogo(funcoes.jogo,funcoes.numeroJogos,funcoes.resultado_main);
-            top_10.mostrarTop10(funcoes.jogo,funcoes.numeroJogos);
-            }
-             
-            
-              //trocar jogador
-            if(n != 9){
-            funcoes.numero_jogada(funcoes.r_main);
-
-            funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-
-            while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
-                        
-                        funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-                        
-                        funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-            }
-
-            funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-           
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
-
-            if(funcoes.verificafimdojogo_computador(funcoes.matriz_de_jogo)==9){
                 
-                n=9;
-                       
-            funcoes.resultado_main="Derrota";
-            top_10.registrarJogo(funcoes.jogo,funcoes.numeroJogos,funcoes.resultado_main);
-            top_10.mostrarTop10(funcoes.jogo,funcoes.numeroJogos);
 
-            }
-
-            if(n==3){
-            cout << "Resultado: Empate" << endl;
-                    
-            funcoes.resultado_main="Empate";
-            top_10.registrarJogo(funcoes.jogo,funcoes.numeroJogos,funcoes.resultado_main);
-            top_10.mostrarTop10(funcoes.jogo,funcoes.numeroJogos);
-            }
-            
-           }
-         
-           }
-              
-        }
+              funcoes.menu_pcVSjogador();
 
        funcoes.i_jogo=0;
         funcoes.r_main=1;
         funcoes.tirar_valores(funcoes.matriz_de_jogo);
 
+        }
         }
 
         if(funcoes.opçaomenu_jogo == 3){         /*Modo de funcionamento*/
@@ -326,13 +246,11 @@ do{
             
             funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(funcoes.r_main);
-
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
@@ -345,7 +263,7 @@ do{
             funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
             
@@ -363,7 +281,7 @@ do{
            
 
             if(n!=9){
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
@@ -374,7 +292,7 @@ do{
 
             funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
 
@@ -421,13 +339,13 @@ do{
             
             funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(funcoes.r_main);
+            
 
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.jogada_nivel2(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main );
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
@@ -440,7 +358,7 @@ do{
             funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
             
@@ -455,7 +373,7 @@ do{
            
 
             if(n!=9){
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
@@ -466,7 +384,7 @@ do{
 
             funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
 
@@ -514,13 +432,11 @@ do{
             
             funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(funcoes.r_main);
-
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.jogada_nivel3(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
@@ -533,7 +449,7 @@ do{
             funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
             
@@ -548,7 +464,7 @@ do{
            
 
             if(n!=9){
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
@@ -559,7 +475,7 @@ do{
 
             funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
            
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+             funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
 
@@ -619,7 +535,7 @@ do{
 
         }
 
-         if(funcoes.opçaomenu_jogo == 5){   
+        if(funcoes.opçaomenu_jogo == 5){   
                     /*fecha jogo*/
                     //perguntar como resolver o facto dele estar sempre a pedir duas
         cout << "Tem a certeza que quer sair?\n";
@@ -647,19 +563,3 @@ do{
  }
 
 
-
- /* Medidas novas a implementar:
-    -O computador jogar contra si mesmo com dificuldades diferentes(d/j)(feito)
-    -Nivel avançado,nunca perdende, empata ou ganha(tentar jogar no meio caso não seja possível jogar nas pontas)(feito)
-    -Implementação de dois jogadores humanos(feito)
-    -continuação top 10(feito)
-    -Tabuleiro a ser desenhado à direita (talvez por ficheiros ou manipolação colocando a função)
-     criar 10 variaveis para ele ir armazenando as matrizes e depois is mostrando(d/j)
-
-
-
-
-    Atualizações:
-    -Na escolha de quem quer jogar primeiro colocar as dificuldades "ou qual o jogador/agente nos níveis 5 e 6"---
-    -
-    */
