@@ -213,27 +213,31 @@ bool Funcoes::verificarposicaoDisponivel(char matriz_de_jogo[3][3],int l, int c)
 
 void Funcoes::obtercoordenada(int &c,int &l){
     
-    do{
+    while (true) {
         cout << "Insira um número para a linha" << endl;
-         if (!(cin >> l)) {
-            cout << "Entrada inválida. Por favor, insira um número." << endl;
-            cin.clear();            // Limpa o estado de erro do cin
+        if (!(cin >> l) || l < 0 || l > 2) {
+            cout << "Entrada inválida. Por favor, insira um número entre 0 e 2." << endl;
+            cin.clear();            
             cin.ignore(100, '\n');  // Limpa o buffer de entrada
-        } else if (l < 0 || l > 2) {
-            cout << "Opção inválida. Por favor, escolha uma opção entre 0 e 2." << endl;
+        } else {
+            break; // Se a entrada for válida, saímos do loop
         }
-    } while(cin.fail() || l < 0 || l > 2);
+    }
 
-     do{
-        cout << "Insira um numero para a coluna" << endl;
-          if (!(cin >> c)) {
-            cout << "Entrada inválida. Por favor, insira um número." << endl;
-            cin.clear();            // Limpa o estado de erro do cin
+
+    cin.ignore(100, '\n');
+
+    // Loop para obter uma coluna válida
+     while (true) {
+        cout << "Insira um número para a coluna" << endl;
+        if (!(cin >> c) || c < 0 || c > 2) {
+            cout << "Entrada inválida. Por favor, insira um número entre 0 e 2." << endl;
+            cin.clear();            
             cin.ignore(100, '\n');  // Limpa o buffer de entrada
-        } else if (c < 0 || c > 2) {
-            cout << "Opção inválida. Por favor, escolha uma opção entre 0 e 2." << endl;
+        } else {
+            break; // Se a entrada for válida, saímos do loop
         }
-    } while(cin.fail() || c < 0 || c > 2);
+    }
 
 }
 
@@ -610,15 +614,13 @@ void Funcoes::jogadorVSjogador(){
 
             i_jogo=1;
 
-            numero_jogada(r_main);
-
-            printmatriz(matriz_de_jogo,i_jogo);
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
 
             for(int n=0;n<4;n++){
             //Jogador-2
-                 numero_jogada(r_main);
+                 
             obtercoordenada(coluna_main,linha_main); // criar funcao para jogador 2
 
             while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
@@ -629,7 +631,7 @@ void Funcoes::jogadorVSjogador(){
 
            colocar_valor2(matriz_de_jogo,linha_main,coluna_main); // criar funcao para jogador 2
            
-           printmatriz(matriz_de_jogo,i_jogo);
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
             if(verificafimdojogo2(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
 
@@ -644,7 +646,7 @@ void Funcoes::jogadorVSjogador(){
 
 
             if(n!=9){
-            numero_jogada(r_main);
+            
             obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
 
             while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
@@ -655,7 +657,7 @@ void Funcoes::jogadorVSjogador(){
 
             colocar_valor(matriz_de_jogo,linha_main,coluna_main);
            
-            printmatriz(matriz_de_jogo,i_jogo);
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
             
 
@@ -932,13 +934,11 @@ void Funcoes::executavel_nivel4(){
             
             i_jogo=1;
 
-            numero_jogada(r_main);
-
-            printmatriz(matriz_de_jogo,i_jogo);
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
             for(int n=0;n<4;n++){
             
-            numero_jogada(r_main);
+            
             jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
             while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){  //verificar a linha do computador
@@ -951,8 +951,7 @@ void Funcoes::executavel_nivel4(){
             colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
 
             
-            printmatriz(matriz_de_jogo,i_jogo);
-
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
             
             
               //Função trocar jogador;
@@ -966,7 +965,7 @@ void Funcoes::executavel_nivel4(){
            
 
             if(n!=9){
-            numero_jogada(r_main);
+            
             obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
 
             while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
@@ -977,7 +976,7 @@ void Funcoes::executavel_nivel4(){
 
             colocar_valor(matriz_de_jogo,linha_main,coluna_main);
            
-            printmatriz(matriz_de_jogo,i_jogo);
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
             
 
@@ -1060,19 +1059,19 @@ void Funcoes::computadorVScomputador(){
 
                             i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                   imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         jogadaComputador2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1085,7 +1084,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1103,7 +1102,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                           jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1115,7 +1114,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1152,19 +1151,19 @@ void Funcoes::computadorVScomputador(){
 
                             i_jogo=1;
 
-                            numero_jogada(r_main);
+                           
 
                                     jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1177,7 +1176,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1195,7 +1194,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                         
 
                           jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1207,7 +1206,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1245,19 +1244,19 @@ void Funcoes::computadorVScomputador(){
 
                             i_jogo=1;
 
-                            numero_jogada(r_main);
+                           
 
                                     jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1270,7 +1269,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                       imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1288,7 +1287,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1300,7 +1299,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1338,19 +1337,19 @@ void Funcoes::computadorVScomputador(){
 
   i_jogo=1;
 
-                            numero_jogada(r_main);
+                           
 
                                     jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                       
 
                         computador2_jogada_nivel4(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1363,7 +1362,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1381,7 +1380,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_computador(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1393,7 +1392,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1443,19 +1442,19 @@ void Funcoes::computadorVScomputador(){
                                     
                                      i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                       
 
                         jogadaComputador2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1468,7 +1467,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                       imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1486,7 +1485,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                         
 
                           jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1498,7 +1497,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1534,19 +1533,19 @@ void Funcoes::computadorVScomputador(){
 
                                               i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                   imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                       imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                         computador2_jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1559,7 +1558,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1577,7 +1576,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1589,7 +1588,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1627,19 +1626,19 @@ void Funcoes::computadorVScomputador(){
 
                  i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                   imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1652,7 +1651,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1670,7 +1669,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1682,7 +1681,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1722,20 +1721,19 @@ void Funcoes::computadorVScomputador(){
 
                                     i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
-
+                        
                         computador2_jogada_nivel4(matriz_de_jogo,linha_main,coluna_main);
 
                      while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){  //verificar a linha do computador
@@ -1747,7 +1745,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1765,7 +1763,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1777,7 +1775,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1826,19 +1824,18 @@ void Funcoes::computadorVScomputador(){
                            
                                  i_jogo=1;
 
-                            numero_jogada(r_main);
+                           
 
                                     jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
-
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         jogadaComputador2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1851,7 +1848,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1869,7 +1866,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                         
 
                           jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1881,7 +1878,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -1918,19 +1915,19 @@ void Funcoes::computadorVScomputador(){
 
                                               i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                   imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1943,7 +1940,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -1961,7 +1958,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -1973,7 +1970,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -2014,19 +2011,19 @@ void Funcoes::computadorVScomputador(){
 
                  i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2039,7 +2036,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -2057,7 +2054,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2069,7 +2066,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -2108,19 +2105,19 @@ void Funcoes::computadorVScomputador(){
 
                                   i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel4(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2133,8 +2130,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
-
+                       imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
                     //Começa a fazer as verificações de vencedor
 
                     if(verificafimdojogo_computador2(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -2151,7 +2147,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2163,7 +2159,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -2209,19 +2205,19 @@ void Funcoes::computadorVScomputador(){
                                     case (1):             //fácil
                                                             i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                   imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         jogadaComputador2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2234,7 +2230,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -2252,7 +2248,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
@@ -2264,8 +2260,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
-
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
 
@@ -2303,19 +2298,19 @@ void Funcoes::computadorVScomputador(){
 
                                                                       i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2328,7 +2323,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -2346,7 +2341,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
@@ -2358,7 +2353,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -2397,19 +2392,19 @@ void Funcoes::computadorVScomputador(){
 
                                          i_jogo=1;
 
-                            numero_jogada(r_main);
+                           
 
                                     jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                   imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                        
 
                         computador2_jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2422,7 +2417,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -2440,7 +2435,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
@@ -2452,7 +2447,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -2491,19 +2486,19 @@ void Funcoes::computadorVScomputador(){
 
                                                                  i_jogo=1;
 
-                            numero_jogada(r_main);
+                            
 
                                     jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
                                     colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                                    printmatriz(matriz_de_jogo,i_jogo);
+                                    imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     for(int n=0;n<4;n++){
 
                         //Parte do computador 2
                     
-                        numero_jogada(r_main);
+                       
 
                         computador2_jogada_nivel4(matriz_de_jogo,linha_main,coluna_main);
 
@@ -2516,7 +2511,7 @@ void Funcoes::computadorVScomputador(){
 
                         colocar_valor_computador2(matriz_de_jogo,linha_main,coluna_main);
 
-                        printmatriz(matriz_de_jogo,i_jogo);
+                        imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
                     //Começa a fazer as verificações de vencedor
 
@@ -2534,7 +2529,7 @@ void Funcoes::computadorVScomputador(){
             //Passa para o computador 1
 
                 if(n!=9){
-                          numero_jogada(r_main);
+                          
 
                           jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
 
@@ -2546,7 +2541,7 @@ void Funcoes::computadorVScomputador(){
             }
                         colocar_valor_computador1(matriz_de_jogo,linha_main,coluna_main);
 
-                         printmatriz(matriz_de_jogo,i_jogo);
+                         imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
 
 
                 if(verificafimdojogo_computador1(matriz_de_jogo) == 9){ //para ele saltar o empate e voltar ao menu
@@ -3182,7 +3177,7 @@ void Funcoes::matriz_de_jogo5(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[
 }
     }
 
-    void Funcoes::matriz_de_jogo6(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+void Funcoes::matriz_de_jogo6(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
 
 
 
@@ -3214,7 +3209,7 @@ void Funcoes::matriz_de_jogo8(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[
 }
     }
 
-    void Funcoes::matriz_de_jogo9(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+void Funcoes::matriz_de_jogo9(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
 
 
       for (int i = 0; i < 3; ++i) {
@@ -3223,7 +3218,6 @@ void Funcoes::matriz_de_jogo8(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[
     }
 }
     }
-
 
 void Funcoes::imprimeMatrizes(char matriz_de_jogo_sec[9][3][3],int &i,char matriz_de_jogo[3][3]){
  
@@ -3830,3 +3824,352 @@ cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2
 
 
 }
+
+void Funcoes::menu_pcVSjogador(){
+
+    top10 top_10;
+
+    switch(menuDificuldadesPC()){
+
+
+
+        case(1): //facil
+
+                jogada_computador(matriz_de_jogo,linha_main,coluna_main);
+
+                colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+
+                imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+                cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
+            
+                i_jogo=1;
+
+            for(int n=0;n<4;n++){  
+
+            obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna_main,linha_main);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor(matriz_de_jogo,linha_main,coluna_main);
+           
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+                      
+            resultado_main="Vitoria";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            if(n==4){
+            cout << "Resultado: Empate" << endl;
+                     
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+             
+            
+              //trocar jogador
+            if(n != 9){
+            
+
+            jogada_computador(matriz_de_jogo,linha_main,coluna_main);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){  //verificar a linha do computador
+                        
+                        jogada_computador(matriz_de_jogo,linha_main,coluna_main);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+           
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo_computador(matriz_de_jogo)==9){
+                
+                n=9;
+                       
+            resultado_main="Derrota";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+
+            }
+
+            if(n==3){
+            cout << "Resultado: Empate" << endl;
+                    
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            
+           }
+         
+           }
+
+           break;
+
+
+        case(2):
+
+                        jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
+
+                colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+
+                imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+                cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
+            
+                i_jogo=1;
+
+            for(int n=0;n<4;n++){  
+
+            obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna_main,linha_main);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor(matriz_de_jogo,linha_main,coluna_main);
+           
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+                      
+            resultado_main="Vitoria";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            if(n==4){
+            cout << "Resultado: Empate" << endl;
+                     
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+             
+            
+              //trocar jogador
+            if(n != 9){
+            
+
+            jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){  //verificar a linha do computador
+                        
+                        jogada_nivel2(matriz_de_jogo,linha_main,coluna_main);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+           
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo_computador(matriz_de_jogo)==9){
+                
+                n=9;
+                       
+            resultado_main="Derrota";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+
+            }
+
+            if(n==3){
+            cout << "Resultado: Empate" << endl;
+                    
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            
+           }
+         
+           }
+              
+            break;
+
+
+        case(3):
+                      jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
+
+                colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+
+                imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+                cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
+            
+                i_jogo=1;
+
+            for(int n=0;n<4;n++){  
+
+            obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna_main,linha_main);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor(matriz_de_jogo,linha_main,coluna_main);
+           
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+                      
+            resultado_main="Vitoria";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            if(n==4){
+            cout << "Resultado: Empate" << endl;
+                     
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+             
+            
+              //trocar jogador
+            if(n != 9){
+            
+
+            jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){  //verificar a linha do computador
+                        
+                        jogada_nivel3(matriz_de_jogo,linha_main,coluna_main);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+           
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo_computador(matriz_de_jogo)==9){
+                
+                n=9;
+                       
+            resultado_main="Derrota";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+
+            }
+
+            if(n==3){
+            cout << "Resultado: Empate" << endl;
+                    
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            
+           }
+         
+           }
+              
+        break;
+
+
+
+        case(4):    
+
+                 jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
+
+                colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+
+                imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+                cout << "\nEscolha uma posição para colocar a sua peça das disponíveis no tabuleiro das apresentadas\n\n";
+            
+                i_jogo=1;
+
+            for(int n=0;n<4;n++){  
+
+            obtercoordenada(coluna_main,linha_main); // Aqui chama a função para obter as coordenadas
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){
+                        cout << "\nA linha já se encontra preenchida"<< endl;
+                        obtercoordenada(coluna_main,linha_main);
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor(matriz_de_jogo,linha_main,coluna_main);
+           
+             imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo(matriz_de_jogo) == 9){ 
+                n=9;
+                      
+            resultado_main="Vitoria";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            if(n==4){
+            cout << "Resultado: Empate" << endl;
+                     
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+             
+            
+              //trocar jogador
+            if(n != 9){
+            
+
+            jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
+
+            while(verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main) != 1){  //verificar a linha do computador
+                        
+                       jogada_nivel4(matriz_de_jogo,linha_main,coluna_main,contador_nivel4);
+                        
+                        verificarposicaoDisponivel(matriz_de_jogo,linha_main,coluna_main);
+            }
+
+            colocar_valor_computador(matriz_de_jogo,linha_main,coluna_main);
+           
+            imprimeMatrizes(matriz_de_jogo_sec,i_matriz,matriz_de_jogo);
+
+            if(verificafimdojogo_computador(matriz_de_jogo)==9){
+                
+                n=9;
+                       
+            resultado_main="Derrota";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+
+            }
+
+            if(n==3){
+            cout << "Resultado: Empate" << endl;
+                    
+            resultado_main="Empate";
+            top_10.registrarJogo(jogo,numeroJogos,resultado_main);
+            top_10.mostrarTop10(jogo,numeroJogos);
+            }
+            
+           }
+         
+           }
+              
+        break;
+
+    }
+
+}
+                    
+
