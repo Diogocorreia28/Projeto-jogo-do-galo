@@ -6,7 +6,7 @@
 #include<cstring>
 #include<fstream>
 
-
+Funcoes funcoes;
 
 using namespace std;
 
@@ -178,7 +178,7 @@ void Funcoes::colocar_valor_computador(char matriz_de_jogo[3][3],int linha,int c
                         
 }
 
-int Funcoes::printmatriz(char matriz_de_jogo[3][3],int i){
+void Funcoes::printmatriz(char matriz_de_jogo[3][3],int i){
    
     if(i == 0){
 
@@ -260,9 +260,9 @@ void Funcoes::quem_joga_primeiro(int &p){
 
 }
 
-int Funcoes::numero_jogada(int &n){
+void Funcoes::numero_jogada(int &n){
         
-        cout << "\nJogada:" << n << endl;
+        cout << "Jogada:" << n  << "      " ;
         n++;
 }
 
@@ -3129,101 +3129,704 @@ for(int i = 0;i<3;i++){
 
 }
 
-void matrizDireita::matrizesDireita(char matriz_de_jogo[3][3],int &i){
-
-Funcoes funcoes;
-
-//para ir guardando as matrizes nas variaveis
-       
-            matrizes[i]=funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=1);
+void Funcoes::matriz_de_jogo1(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+        
+    for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[0][i][j] = matriz_de_jogo[i][j];
 
 
-// a matriz ocupa 13 linhas
-           
-           
-            //jogada 1 aparece o tabuleiro e pede já a jogada 2         
-            if(i==0){
-                cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main) <<endl;
-                cout << left << matrizes[0] << setw(27) << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0)  <<endl;
-                funcoes.r_main=1; //para reiniciar as jogadas
-
-            }
-            //aparece preenchido o 1 e 2 mas o 3 pede
-            if(i==1){
-
-                cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13)<<funcoes.numero_jogada(funcoes.r_main)<<endl;
-                cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0) << endl;
-                funcoes.r_main=1;
-        }
-            // aparece 1,2,3 e pede 4
-            if(i==2){
-                
-                cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-                cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0) << endl;
-
-                funcoes.r_main=1;
-            }
-            // aparece 1,2,3,4 e pede 5
-            if(i==3){
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-            cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) <<matrizes[3] << endl;
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0) << endl;
-
-            funcoes.r_main=1;
-            }
-            //aparece 1,2,3,4,5 e pede 6
-            if(i==4){
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-            cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) <<matrizes[3] << endl;  
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main) <<endl;
-            cout << left << matrizes[4] << setw(27) << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0)  <<endl;  
-
-            funcoes.r_main=1;
-
-            }
-            //aparece 1,2,3,4,5,6 e pede 7
-            if(i==5){
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13)<< funcoes.numero_jogada(funcoes.r_main)<<setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-            cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) <<matrizes[3] << endl;  
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main) << setw(13) << funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left << matrizes[4] << setw(27) << matrizes[5] << setw(27) << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0) <<endl;  
-
-            funcoes.r_main=1;
-            }
-            //aparece 1,2,3,4,5,6,7 e pede 8
-            if(i==6){
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-            cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) <<matrizes[3] << endl;  
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13) << funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left << matrizes[4] << setw(27) << matrizes[5] << setw(27) << matrizes[6] << funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0) <<endl;  
-
-            funcoes.r_main=1;
-            }
-            //aparece 1,2,3,4,5,6,7,8 e pede 9
-            if(i==7){
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-            cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) <<matrizes[3] << endl;  
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13) << funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left << matrizes[4] << setw(27) << matrizes[5] << setw(27) << matrizes[6] << setw(27) << matrizes[7]<< endl;
-            cout << left <<  funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left <<  funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo=0) << endl;
-
-            funcoes.r_main=1;
-            }
-            // aparece o jogo concluido
-            if(i==8){
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13) << funcoes.numero_jogada(funcoes.r_main)  <<endl;
-            cout << left << matrizes[0] << setw(27) << matrizes[1] << setw(27) << matrizes[2] << setw(27) <<matrizes[3] << endl;  
-            cout << left << funcoes.numero_jogada(funcoes.r_main) << setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13)<< funcoes.numero_jogada(funcoes.r_main)<< setw(13) << funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left << matrizes[4] << setw(27) << matrizes[5] << setw(27) << matrizes[6] << setw(27) << matrizes[7]<< endl;
-            cout << left <<  funcoes.numero_jogada(funcoes.r_main) << endl;
-            cout << left <<  matrizes[8] << endl;
-
-            funcoes.r_main=1;
-            }
-
-            i++;
-
+    }
+          }
 }
 
+
+void Funcoes::matriz_de_jogo2(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+
+       for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[1][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+void Funcoes::matriz_de_jogo3(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+      for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[2][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+void Funcoes::matriz_de_jogo4(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+       for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[3][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+void Funcoes::matriz_de_jogo5(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+
+       for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[4][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+    void Funcoes::matriz_de_jogo6(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+
+        for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[5][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+void Funcoes::matriz_de_jogo7(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+        for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[6][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+void Funcoes::matriz_de_jogo8(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+
+       for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[7][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+    void Funcoes::matriz_de_jogo9(char matriz_de_jogo[3][3],char matriz_de_jogo_sec[9][3][3]){
+
+
+      for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+        matriz_de_jogo_sec[8][i][j] = matriz_de_jogo[i][j];
+    }
+}
+    }
+
+
+void Funcoes::imprimeMatrizes(char matriz_de_jogo_sec[9][3][3],int &i,char matriz_de_jogo[3][3]){
+ 
+  
+
+//ir assim fazendo aos poucos
+     
+     if(i==0){
+     
+    matriz_de_jogo1(matriz_de_jogo,matriz_de_jogo_sec);
+     
+     numero_jogada(r_main);
+     cout <<"\t"<<endl;
+
+     //imprimir as matrizes
+    cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  << endl;
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+    cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    << endl;
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+    cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]    << endl;
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]    << endl;
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+     
+
+     }
+
+
+    if(i==1){
+     matriz_de_jogo2(matriz_de_jogo,matriz_de_jogo_sec);
+    numero_jogada(r_main);
+     cout <<"\t ";
+    numero_jogada(r_main);
+    cout << endl;
+
+    //imprimir matrizes jogada 1 e 2
+
+    //sendo esta a jogada 1
+    cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl; 
+
+    cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;        
+
+    cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    "    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;     
+
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]    << endl;
+
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+    }
+
+    if(i==2){
+
+        matriz_de_jogo3(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << endl;
+
+        //cabeça da matriz
+
+    cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/               <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2] << endl;  
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;  
+
+    cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+   
+     cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2] <<endl;     
+   
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+   
+   
+    }
+
+
+    if(i==3){
+
+        matriz_de_jogo4(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << endl;
+
+        cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+     /*matriz 4*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2]  
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[3][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[3][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[3][0][2] << endl;  
+
+     cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;  
+
+    cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[3][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[3][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[3][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2]
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[3][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[3][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[3][2][2] <<endl;
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+   
+
+
+    }
+
+    if(i==4){
+
+        matriz_de_jogo5(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << endl;
+
+        cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+     /*matriz 4*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2]  
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[3][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[3][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[3][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[4][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[4][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[4][0][2] << endl;  
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;    
+
+    cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[3][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[3][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[3][1][2]   
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[4][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[4][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[4][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+     cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2]
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[3][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[3][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[3][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[4][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[4][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[4][2][2] <<endl;
+
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+    }
+
+    if(i==5){
+         matriz_de_jogo6(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << endl;
+
+        cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+     /*matriz 4*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+        cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+        cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2]  
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[3][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[3][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[3][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[4][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[4][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[4][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[5][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[5][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[5][0][2] << endl;  
+
+         cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;  
+
+        cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[3][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[3][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[3][1][2]   
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[4][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[4][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[4][1][2]    
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[5][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[5][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[5][1][2] << endl;  
+                    
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+                   
+
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2]
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[3][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[3][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[3][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[4][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[4][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[4][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[5][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[5][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[5][2][2] <<endl;
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+    }
+
+
+    if(i==6){
+         matriz_de_jogo7(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << endl;
+
+        cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+     /*matriz 4*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+        cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+        cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2]  
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[3][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[3][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[3][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[4][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[4][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[4][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[5][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[5][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[5][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[6][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[6][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[6][0][2] << endl;  
+
+         cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;  
+  
+
+        cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[3][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[3][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[3][1][2]   
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[4][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[4][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[4][1][2]    
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[5][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[5][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[5][1][2] 
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[6][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[6][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[6][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2]
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[3][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[3][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[3][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[4][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[4][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[4][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[5][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[5][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[5][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[6][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[6][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[6][2][2] <<endl;
+
+
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+
+    }
+
+
+    if(i==7){
+         matriz_de_jogo8(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << endl;
+
+cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+     /*matriz 4*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+        cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+        cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2]  
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[3][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[3][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[3][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[4][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[4][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[4][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[5][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[5][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[5][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[6][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[6][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[6][0][2]
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[7][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[7][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[7][0][2] << endl;    
+
+         cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;    
+  
+
+        cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[3][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[3][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[3][1][2]   
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[4][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[4][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[4][1][2]    
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[5][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[5][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[5][1][2] 
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[6][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[6][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[6][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[7][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[7][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[7][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2]
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[3][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[3][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[3][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[4][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[4][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[4][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[5][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[5][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[5][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[6][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[6][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[6][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[7][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[7][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[7][2][2] <<endl;
+
+
+
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+    }
+
+    if(i==8){
+        matriz_de_jogo9(matriz_de_jogo,matriz_de_jogo_sec);
+
+        numero_jogada(r_main);
+        cout <<"\t ";
+        numero_jogada(r_main);
+        cout << "\t  ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";
+        numero_jogada(r_main);
+        cout << "   ";  
+        numero_jogada(r_main);
+        cout << endl;
+
+
+cout << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"
+    /*matriz 2*/    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2"  
+     /*matriz 3*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+     /*matriz 4*/   <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" 
+                    <<  "     " << setw(4) << "0"  << " |"    << setw(2) << "1" << " |"    << setw(2) << "2" << endl;
+
+        cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 3*/    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    "<<  setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+        cout << "0"     << "|"  << setw(2) << matriz_de_jogo_sec[0][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[0][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[0][0][2]    
+    /*matriz 2*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[1][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[1][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[1][0][2]   
+    /*matriz 3*/    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[2][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[2][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[2][0][2]  
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[3][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[3][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[3][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[4][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[4][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[4][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[5][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[5][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[5][0][2] 
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[6][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[6][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[6][0][2]
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[7][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[7][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[7][0][2]   
+                    <<"     "<< "0"     << "|"  << setw(2) << matriz_de_jogo_sec[8][0][0]      << " |"<< setw(2) <<  matriz_de_jogo_sec[8][0][1]     << " |" << setw(2) << matriz_de_jogo_sec[8][0][2] << endl; 
+
+         cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"     
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;  
+  
+
+        cout << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[0][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[0][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[0][1][2]   
+    /*matriz 2*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[1][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[1][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[1][1][2]    
+    /*matriz 3*/    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[2][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[2][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[2][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[3][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[3][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[3][1][2]   
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[4][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[4][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[4][1][2]    
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[5][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[5][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[5][1][2] 
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[6][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[6][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[6][1][2]  
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[7][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[7][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[7][1][2]
+                    <<"     " << "1"     << "|"  << setw(2) << matriz_de_jogo_sec[8][1][0]       << " |"<< setw(2) << matriz_de_jogo_sec[8][1][1]       << " |" << setw(2) << matriz_de_jogo_sec[8][1][2]    << endl;
+
+    cout << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+    /*matriz 2*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+    /*matriz 3*/    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---"
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" 
+                    <<"    " << setw(2) << "-|" << setw(3) << "---"   << "|" << setw(2) << "---"   << "|"  << setw(2) << "---" << endl;
+
+    cout << "2"     << "|"  << setw(2) << matriz_de_jogo_sec[0][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[0][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[0][2][2]  
+    /*matriz 2*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[1][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[1][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[1][2][2]   
+    /*matriz 3*/     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[2][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[2][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[2][2][2]
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[3][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[3][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[3][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[4][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[4][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[4][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[5][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[5][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[5][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[6][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[6][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[6][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[7][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[7][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[7][2][2] 
+                     <<"     "<< "2"     << "|"  << setw(2) << matriz_de_jogo_sec[8][2][0]       << " |"<< setw(2) <<   matriz_de_jogo_sec[8][2][1]     << " |" << setw(2) <<  matriz_de_jogo_sec[8][2][2] <<endl;
+
+
+
+    cout << endl;
+    i++;
+    r_main=1;
+    return;
+    }
+
+
+
+
+
+
+    
+
+
+
+
+}
