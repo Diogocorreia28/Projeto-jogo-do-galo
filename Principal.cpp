@@ -19,6 +19,7 @@ int main(){
 
     Funcoes funcoes;
     top10 top_10;
+ 
 
     srand((unsigned int)time(NULL)); //plantar a semente 
 
@@ -46,13 +47,11 @@ do{
             
             funcoes.i_jogo=1;
 
-            funcoes.numero_jogada(funcoes.r_main);
-
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+           funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             for(int n=0;n<4;n++){
             
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.jogada_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){  //verificar a linha do computador
@@ -65,7 +64,7 @@ do{
             funcoes.colocar_valor_computador(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
 
             
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+            funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
             
@@ -80,7 +79,7 @@ do{
            
 
             if(n!=9){
-            funcoes.numero_jogada(funcoes.r_main);
+            
             funcoes.obtercoordenada(funcoes.coluna_main,funcoes.linha_main); // Aqui chama a função para obter as coordenadas
 
             while(funcoes.verificarposicaoDisponivel(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main) != 1){
@@ -90,8 +89,8 @@ do{
             }
 
             funcoes.colocar_valor(funcoes.matriz_de_jogo,funcoes.linha_main,funcoes.coluna_main);
-           
-            funcoes.printmatriz(funcoes.matriz_de_jogo,funcoes.i_jogo);
+         
+           funcoes.imprimeMatrizes(funcoes.matriz_de_jogo_sec,funcoes.i_matriz,funcoes.matriz_de_jogo);
 
             
 
